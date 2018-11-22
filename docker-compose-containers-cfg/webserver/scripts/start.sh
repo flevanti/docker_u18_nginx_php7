@@ -13,8 +13,8 @@ fi
 
 # Display PHP error's or not
 if [[ "$ERRORS" != "1" ]] ; then
-  sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL/g" /etc/php/7.0/fpm/php.ini
-  sed -i -e "s/display_errors =.*/display_errors = On/g" /etc/php/7.0/fpm/php.ini
+  sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL/g" /etc/php/7.2/fpm/php.ini
+  sed -i -e "s/display_errors =.*/display_errors = On/g" /etc/php/7.2/fpm/php.ini
 fi
 
 # Tweak nginx to match the workers to cpu's
@@ -37,6 +37,9 @@ fi
 
 # Again set the right permissions (needed when mounting from a volume)
 chown -Rf www-data.www-data /app
+
+#run php
+php-fpm7.2 -D
 
 # Start supervisord and services
 /usr/bin/supervisord -n -c /etc/supervisord.conf

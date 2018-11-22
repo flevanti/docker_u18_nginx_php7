@@ -1,0 +1,15 @@
+version: '3'
+services:
+  webserver:
+    build:
+      context: ./docker-compose-containers-cfg/webserver
+      args:
+        - 'INSTALL_NODE=${INSTALL_NODE}'
+        - 'NODE_VERSION=${NODE_VERSION}'
+    ports:
+      - '80:80'
+      - 443:443
+    volumes:
+      - './shared:/var/www/shared'
+    container_name: RFU18NGXP7
+    working_dir: /var/www
