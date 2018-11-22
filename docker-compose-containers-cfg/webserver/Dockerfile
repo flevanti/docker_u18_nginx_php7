@@ -183,6 +183,13 @@ RUN chown -Rf www-data.www-data /app
 RUN chown -Rf www-data.www-data /var/www/html
 
 
+#install mcrypt (deprecated as a php package since 7.2) we need to use pecl
+RUN apt-get -y install gcc make autoconf libc-dev pkg-config
+RUN apt-get -y install php7.2-dev
+RUN apt-get -y install libmcrypt-dev
+RUN pecl install mcrypt-1.0.1
+
+
 # Expose Ports
 EXPOSE 443
 EXPOSE 80
